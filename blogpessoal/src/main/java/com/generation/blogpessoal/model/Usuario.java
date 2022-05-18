@@ -14,6 +14,8 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @Entity
 @Table(name="tb_usuarios")
 
@@ -28,7 +30,8 @@ public class Usuario {
 	
 	private String nome;
 	
-	
+	@Schema(example = "email@email.com.br")
+
 	@NotNull
 	@Email(message = "O usuário deve ser um email valido ex:maria@email.com")
 
@@ -43,6 +46,21 @@ public class Usuario {
 	@JsonIgnoreProperties("usuario")
 
 	private List<Postagem> postagem;
+	
+	
+	// Metodos construtores para testes
+		//importante seguir a mesma ordem das declarações dos atributos de usuario acima 
+		//construtor cheio
+		public Usuario(Long id, String nome, String usuario, String senha, String foto) {
+			this.id = id;
+			this.nome = nome;
+			this.usuario = usuario;
+			this.senha = senha;
+			this.foto = foto;
+		}
+		
+		public Usuario() {}
+
 
 
 	public Long getId() {
